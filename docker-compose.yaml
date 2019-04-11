@@ -26,9 +26,28 @@ services:
     - "./logs:/srv/logs"
     - "./html:/srv/report"
     - "./geoip/:/src/geoip/"
+
+  # for iis w3c log demo
+  log2:
+    image: dalongrong/goaccess-geo
+    ports:
+    - "7891:7891"
+    volumes: 
+    - "./data2:/srv/data"
+    - "./w3c_log/LogFiles/W3SVC16:/srv/logs"
+    - "./html2:/srv/report"
+    - "./geoip/:/src/geoip/"
   web:
     image: nginx
     ports: 
     - "8080:80"
     volumes: 
     - "./html/:/usr/share/nginx/html/"
+
+  # for iis w3c log demo
+  web2:
+    image: nginx
+    ports: 
+    - "8081:80"
+    volumes: 
+    - "./html2/:/usr/share/nginx/html/"
