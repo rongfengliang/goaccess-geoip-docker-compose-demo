@@ -1,0 +1,17 @@
+version: "3"
+services:
+  log:
+    image: dalongrong/goaccess-geo
+    ports:
+    - "7890:7890"
+    volumes: 
+    - "./data:/srv/data"
+    - "./logs:/srv/logs"
+    - "./html:/srv/report"
+    - "./geoip/:/src/geoip/"
+  web:
+    image: nginx
+    ports: 
+    - "8080:80"
+    volumes: 
+    - "./html/:/usr/share/nginx/html/"
