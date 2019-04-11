@@ -1,5 +1,22 @@
 version: "3"
 services:
+  metrics:
+   image: sunbird/prometheus-jsonpath-exporter
+   volumes: 
+   - "./conf/config.yml:/etc/prometheus-jsonpath-exporter/config.yml"
+   ports:
+   - "9158:9158"
+   command: /etc/prometheus-jsonpath-exporter/config.yml
+  g:
+    image: grafana/grafana
+    ports:
+    - "3000:3000"
+  p:
+    image: prom/prometheus
+    volumes:
+    - "./conf/prometheus.yml:/etc/prometheus/prometheus.yml"
+    ports:
+    - "9090:9090" 
   log:
     image: dalongrong/goaccess-geo
     ports:

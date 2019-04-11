@@ -1,0 +1,8 @@
+exporter_port: 9158 # Port on which prometheus can call this exporter to get metrics
+log_level: info
+json_data_url: http://web/app.json # Url to get json data used for fetching metric values
+metric_name_prefix: go_access # All metric names will be prefixed with this value
+metrics:
+- name: total_request # Final metric name will be go_access_total_request
+  description: Number of total request
+  path: $.general.total_requests
